@@ -21,6 +21,72 @@ public class Game implements Comparable<Game> {
 	private String releaseDate;
 	
 	private Image cover;
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(String developer) {
+		this.developer = developer;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String[] getGenres() {
+		return genres;
+	}
+
+	public void setGenres(String[] genres) {
+		this.genres = genres;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+	public Double getPlayTime() {
+		return playTime;
+	}
+
+	public void setPlayTime(Double playTime) {
+		this.playTime = playTime;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public Image getCover() {
+		return cover;
+	}
+
+	public void setCover(Image cover) {
+		this.cover = cover;
+	}
 
 	@Override
 	public int compareTo(Game game) {
