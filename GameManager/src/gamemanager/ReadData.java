@@ -14,7 +14,6 @@ public class ReadData {
 		File gamesFile = new File("Steam_Metadata_Full_marko_pakete.csv");
 		
 		String key;
-		String[] values = new String[7];
 		String[] currLine;
 		
 		try {
@@ -24,25 +23,24 @@ public class ReadData {
 			
 			while(gamesScanner.hasNext()) {
 				
-				currLine = gamesScanner.nextLine().split(",");
+				String[] values = new String[6];
+				
+				//Split according to a regular expression that will avoid commas that exist within double quotes.
+				//https://www.baeldung.com/java-split-string-commas
+				currLine = gamesScanner.nextLine().split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 				
 				//Name
 				values[0] = currLine[0].replace("\"", "");
 				//Steam ID
 				values[1] = currLine[7].replace("\"", "");
 				//Genre
-				values[3] = currLine[9].replace("\"", "");
+				values[2] = currLine[10].replace("\"", "");
 				//Developer
-				values[4] = currLine[12].replace("\"", "");
+				values[3] = currLine[13].replace("\"", "");
 				//Publisher
-				values[5] = currLine[13].replace("\"", "");
+				values[4] = currLine[14].replace("\"", "");
 				//Hours Played
-				values[6] = currLine[14].replace("\"", "");
-				
-				for(int i = 0; i < currLine.length; i ++) {
-					System.out.print(i + " " + currLine[i] + " ");
-				}				
-				System.out.println();
+				values[5] = currLine[17].replace("\"", "");
 				
 				key = currLine[0].replace("\"", "");
 				allGames.put(key, values);	
@@ -51,7 +49,8 @@ public class ReadData {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-										
+								
+		
 		return allGames;
 		
 	}
@@ -61,8 +60,12 @@ public class ReadData {
 		Map<String, String[]> gamesInfo = new HashMap<>();
 		gamesInfo = createGamesMap();
 
-		String[] game = gamesInfo.get("Grand Theft Auto V");
-		System.out.print(game[0]);
+		String[] game = gamesInfo.get("The Witcher: Enhanced Edition");
+		
+		for(int i = 0; i < game.length; i ++) {
+			System.out.println(game[i]);
+		}
+		
 
 	}
 
