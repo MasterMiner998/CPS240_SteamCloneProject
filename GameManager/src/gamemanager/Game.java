@@ -90,8 +90,7 @@ public class Game implements Comparable<Game> {
 
 	@Override
 	public int compareTo(Game game) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.name.compareTo(game.getName());
 	}
 
 	@Override
