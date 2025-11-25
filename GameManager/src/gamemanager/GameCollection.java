@@ -7,11 +7,19 @@ public class GameCollection {
 	String name;
 	ArrayList<Game> gcSorted;
 	ArrayList<Game> gameCollectionDisplay;
+	
+	public GameCollection(String name) {
+		super();
+		this.name = name;
+		this.gcSorted = new ArrayList<Game>();
+		//Game.sortType = Game.SortType.Alphabetical;
+		this.gcSorted.sort(null);
+	}
 	public GameCollection(String name, ArrayList<Game> gameCollection) {
 		super();
 		this.name = name;
-		this.gcSorted = gameCollection;
-		Game.sortType = Game.SortType.Alphabetical;
+		this.gcSorted = (ArrayList<Game>) gameCollection.clone();
+		//Game.sortType = Game.SortType.Alphabetical;
 		this.gcSorted.sort(null);
 	}
 	public String getName() {
@@ -30,13 +38,27 @@ public class GameCollection {
 	
 	public void addGame(Game game) {
 		gcSorted.add(game);
-		Game.sortType = Game.SortType.Alphabetical;
+		//Game.sortType = Game.SortType.Alphabetical;
 		this.gcSorted.sort(null);
 	}
-	public Game getGame(String name) {
-		int size = gcSorted.size();
-		int startingI = size/2;
-		int i = startingI;
+	public Game getGame(String x) {
+		int l = 0;
+        int r = gcSorted.size() - 1;
+
+        while (l <= r) {
+
+            int m = l + (r - l) / 2;
+
+            if (gcSorted.get(m).getName().equals(x)) {
+                return gcSorted.get(m);
+            }
+            if (gcSorted.get(m).getName().compareTo(x) < 0) {
+                l = m + 1;
+            }
+            else {
+                r = m - 1;
+            }
+        }
 		
 		return null;
 	}
