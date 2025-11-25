@@ -20,10 +20,26 @@ public class Game implements Comparable<Game> {
 	private Double playTime;
 	private String releaseDate;
 	
+	private int gameID;
+	
 	private Image cover;
 	
 	
 	
+	public Game(String name, String developer, String publisher, String[] genres, Double rating, Double playTime,
+			String releaseDate, int gameID, Image cover) {
+		super();
+		this.name = name;
+		this.developer = developer;
+		this.publisher = publisher;
+		this.genres = genres;
+		this.rating = rating;
+		this.playTime = playTime;
+		this.releaseDate = releaseDate;
+		this.gameID = gameID;
+		this.cover = cover;
+	}
+
 	public String getName() {
 		return name;
 	}
