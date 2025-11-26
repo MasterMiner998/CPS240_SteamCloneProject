@@ -1,10 +1,16 @@
 package gamemanager;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class ReadData {
 
@@ -65,37 +71,69 @@ public class ReadData {
 		
 		Map<String, Game> allGames = new HashMap<>();
 		
+		int count = 0;
+		
 		for(String key: gamesInfo.keySet()) {
+			
+			System.out.println(count += 1);
 			
 			String[] gameData = gamesInfo.get(key); 
 			
 			String gameName = gameData[0];
-			int gameID = Integer.parseInt(gameData[1]);
+			int gameID = gameData[1].equals("NA") ? 0 : Integer.parseInt(gameData[1]) ;
+			String[] genres = gameData[2].split(",");
+			String developer = gameData[3];
+			String publisher = gameData[4];
+			Double hours = gameData[5].equals("NA") || gameData[5].isEmpty() ? 0.0 : Double.parseDouble(gameData[5]);
+			String releaseDate = gameData[6];
+			Double rating = gameData[7].equals("NA") || gameData[7].isEmpty() ? 0.0 : Double.parseDouble(gameData[7]);
 			
+			String imageLink = String.format("https://steamcdn-a.akamaihd.net/steam/apps/%d/library_600x900_2x.jpg", gameID);
 			
+			BufferedImage cover = null;
 			
+//			try {
+//			
+//				URL url = new URL(imageLink);
+//				cover = ImageIO.read(url);
+//			
+//			} catch(IOException e) {
+//				continue;			
+//			}
 			
+			Game game = new Game(gameName, developer, publisher, genres, rating, hours, releaseDate, gameID, cover);
+			allGames.put(gameName, game);
 			
 		}
 		
 		
 		
-		return null;
+		return allGames;
 		
 	}
 	
 	public static void main(String[] args) {
 	
-		Map<String, String[]> gamesInfo = new HashMap<>();
-		gamesInfo = createGamesInfoMap();
-
-		String[] game = gamesInfo.get("Darksiders II Deathinitive Edition");
+//		Map<String, String[]> gamesInfo = new HashMap<>();
+//		gamesInfo = createGamesInfoMap();
+//
+//		String[] game = gamesInfo.get("Darksiders II Deathinitive Edition");
+//		
+//		for(int i = 0; i < game.length; i ++) {
+//			System.out.println(game[i]);
+//		}
 		
-		for(int i = 0; i < game.length; i ++) {
-			System.out.println(game[i]);
+		Map<String, Game> allGames = new HashMap<>();
+		allGames = createGamesMap();
+		
+		for(String key: allGames.keySet()) {
+			
+			System.out.println(allGames.get(key).toString());
+			
+			
 		}
 		
-
 	}
 
+	
 }
