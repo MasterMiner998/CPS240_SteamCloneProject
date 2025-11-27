@@ -6,10 +6,12 @@ import java.util.Comparator;
 public class GameCollection {
 	String name;
 	ArrayList<Game> gcSorted;
+	int id;
 	//ArrayList<Game> gameCollectionDisplay;
 	
-	public GameCollection(String name) {
+	public GameCollection(int id, String name) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.gcSorted = new ArrayList<Game>();
 		//Game.sortType = Game.SortType.Alphabetical;
@@ -28,6 +30,12 @@ public class GameCollection {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getSize() {
+		return this.gcSorted.size();
+	}
+	public ArrayList<Game> getCollection(){
+		return this.gcSorted;
+	}
 //	public ArrayList<Game> getGameCollection() {
 //		return gameCollectionDisplay;
 //	}
@@ -35,7 +43,12 @@ public class GameCollection {
 		this.gcSorted = gameCollection;
 	}
 	
-	
+	public int getId() {
+		return this.id;
+	}
+	public void setId(int i) {
+		this.id = i;
+	}
 	public void addGame(Game game) {
 		gcSorted.add(game);
 		//Game.sortType = Game.SortType.Alphabetical;
@@ -44,11 +57,14 @@ public class GameCollection {
 	public void removeGame(Game game) {
 		int a = this.containsGame(game);
 		if(a < 0) {
-			System.out.printf("%s does not contain %s", this.name, game.getName());
+			//System.out.printf("%s does not contain %s", this.name, game.getName());
 			return;
 		}
 		gcSorted.remove(a);
 		//Remove from display list
+	}
+	public void removeGame(int i) {
+		gcSorted.remove(i);
 	}
 	public int containsGame(Game game) {
 		int l = 0;
@@ -71,7 +87,7 @@ public class GameCollection {
 		
 		return -1;
 	}
-	public Game fidGame(String x) {
+	public Game findGame(String x) {
 		int l = 0;
         int r = gcSorted.size() - 1;
 
@@ -91,6 +107,10 @@ public class GameCollection {
         }
 		
 		return null;
+	}
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 }

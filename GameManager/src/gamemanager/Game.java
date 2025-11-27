@@ -39,6 +39,15 @@ public class Game implements Comparable<Game> {
 		this.gameID = gameID;
 		this.cover = cover;
 	}
+	
+
+	public Game(String name, String developer, String publisher) {
+		super();
+		this.name = name;
+		this.developer = developer;
+		this.publisher = publisher;
+	}
+
 
 	public String getName() {
 		return name;
@@ -111,7 +120,7 @@ public class Game implements Comparable<Game> {
 
 	@Override
 	public String toString() {
-		return String.format("%s, by %s, published by: %s", name, developer, publisher);
+		return String.format("%s, developed by %s, and published by %s", name, developer, publisher);
 	}
 	
 }
