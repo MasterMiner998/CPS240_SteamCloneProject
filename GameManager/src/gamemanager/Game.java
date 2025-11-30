@@ -112,6 +112,15 @@ public class Game implements Comparable<Game> {
 	public void setCover(Image cover) {
 		this.cover = cover;
 	}
+	
+	public int getGameID() {
+		return gameID;
+	}
+
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
 
 	@Override
 	public int compareTo(Game game) {

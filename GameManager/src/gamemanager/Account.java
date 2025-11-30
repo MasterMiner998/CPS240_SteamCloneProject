@@ -1,6 +1,11 @@
 package gamemanager;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Account {
 
@@ -33,6 +38,7 @@ public class Account {
 		return this.collections;
 	}
 	public void addToLibrary(Game game) {
+		parseCoverImage(game);
 		this.library.addGame(game);
 	}
 	public void removeFromLibrary(Game game) {
@@ -53,4 +59,23 @@ public class Account {
 	public void removeFromCollection(int i, Game game) {
 		collections.get(i).removeGame(game);
 	}
+
+	public void parseCoverImage(Game game) {
+		
+		String imageLink = String.format("https://steamcdn-a.akamaihd.net/steam/apps/%d/library_600x900_2x.jpg", game.getGameID());
+		BufferedImage cover = null;
+		
+		try {
+		
+			URL url = new URL(imageLink);
+			cover = ImageIO.read(url);
+		
+		} catch(IOException e) {
+			
+		}
+		
+		game.setCover(cover);
+		
+	}
+	
 }

@@ -87,19 +87,8 @@ public class ReadData {
 			Double hours = gameData[5].equals("NA") || gameData[5].isEmpty() ? 0.0 : Double.parseDouble(gameData[5]);
 			String releaseDate = gameData[6];
 			Double rating = gameData[7].equals("NA") || gameData[7].isEmpty() ? 0.0 : Double.parseDouble(gameData[7]);
-			
-			String imageLink = String.format("https://steamcdn-a.akamaihd.net/steam/apps/%d/library_600x900_2x.jpg", gameID);
-			
+						
 			BufferedImage cover = null;
-			
-//			try {
-//			
-//				URL url = new URL(imageLink);
-//				cover = ImageIO.read(url);
-//			
-//			} catch(IOException e) {
-//				continue;			
-//			}
 			
 			Game game = new Game(gameName, developer, publisher, genres, rating, hours, releaseDate, gameID, cover);
 			allGames.put(gameName, game);
@@ -113,15 +102,6 @@ public class ReadData {
 	}
 	
 	public static void main(String[] args) {
-	
-//		Map<String, String[]> gamesInfo = new HashMap<>();
-//		gamesInfo = createGamesInfoMap();
-//
-//		String[] game = gamesInfo.get("Darksiders II Deathinitive Edition");
-//		
-//		for(int i = 0; i < game.length; i ++) {
-//			System.out.println(game[i]);
-//		}
 		
 		Map<String, Game> allGames = new HashMap<>();
 		allGames = createGamesMap();
