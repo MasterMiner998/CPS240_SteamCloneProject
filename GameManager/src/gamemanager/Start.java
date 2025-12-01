@@ -31,6 +31,9 @@ public class Start {
 		account.addToLibrary(g1);
 		account.addToLibrary(g2);
 		account.addToLibrary(g3);
+		for(int i=0;i<100;i++) {
+			account.addToLibrary(new Game("Test", "Test", "Test"));
+		}
 		
 		GameManager.setAccount(account);
 		Application.launch(GameManager.class, args);
