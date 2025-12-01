@@ -1,0 +1,14 @@
+Coding:
++Add Games
++Remove Games
++Add to collection(from game screen)
++Add collections to library screen
++Refresh library screen on update
++Add way to return to library screen from game screen
+
+Presentation:
++Powerpoint
++Update uml
+
+Extensions:
++Sorting
