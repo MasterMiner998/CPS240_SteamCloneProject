@@ -7,7 +7,7 @@ public class Account {
 
 	private String userName;
 	private GameCollection library;
-	private ArrayList<GameCollection> collections;
+	private static ArrayList<GameCollection> collections;
 	int idCount;
 	public Account(String userName) {
 		this.userName = userName;
@@ -30,8 +30,8 @@ public class Account {
 	public GameCollection getLibrary() {
 		return this.library;
 	}
-	public ArrayList<GameCollection> getCollections(){
-		return this.collections;
+	public static ArrayList<GameCollection> getCollections(){
+		return collections;
 	}
 	public void addToLibrary(Game game) {
 		this.library.addGame(game);

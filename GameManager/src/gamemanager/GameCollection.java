@@ -9,6 +9,14 @@ public class GameCollection {
 	int id;
 	//ArrayList<Game> gameCollectionDisplay;
 	
+	public GameCollection(String name) {
+		super();
+		this.name = name;
+		this.id = -1;
+		this.gcSorted = new ArrayList<Game>();
+		this.gcSorted.sort(null);
+	}
+	
 	public GameCollection(int id, String name) {
 		super();
 		this.id = id;

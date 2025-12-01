@@ -16,7 +16,6 @@ public class GMPartBuilder {
 		
 		VBox box = new VBox();
 
-		
 		VBox vbxAddColl = new VBox();
 		Button btnAddColl = new Button("ADD");
 		Label lblAddColl = new Label("Add to collection: ");
@@ -30,6 +29,51 @@ public class GMPartBuilder {
 		vbxAddColl.setPadding(new Insets(10));
 		
 		vbxAddColl.getChildren().addAll(lblAddColl, tfAddColl, btnAddColl);
+		
+		btnAddColl.setOnMouseClicked(e -> {
+			
+			String collName = tfAddColl.getText();
+			tfAddColl.setText("");
+			
+			if(!collName.isBlank()) {
+				
+				boolean found = false;
+				GameCollection coll = new GameCollection(collName);
+				
+				
+				for(int i = 0; i < Account.getCollections().size(); i++) {
+					
+					if(Account.getCollections().get(i).getName().equals(collName)) {
+						found = true;
+						Account.getCollections().get(i).addGame(game);
+						break;
+					}
+				}
+				
+				if(!found) {
+					
+					coll.addGame(game);
+					Account.getCollections().add(coll);
+					
+				}
+							
+			}
+			
+			for(int i = 0; i < Account.getCollections().size(); i ++) {
+				//System.out.println(i);
+				System.out.println(Account.getCollections().get(i).name);
+				
+				for(int j = 0; j < Account.getCollections().get(i).getSize(); j++) {
+					
+					System.out.print("Game " + j + ": " + Account.getCollections().get(i).getCollection().get(j).getName());
+					System.out.println();
+					
+				}
+			
+				System.out.println("------------------------------------");
+			}
+						
+		});
 		
 		VBox vbxMainDisplay = new VBox();
 		vbxMainDisplay.setPadding(new Insets(10));
@@ -89,4 +133,13 @@ public class GMPartBuilder {
 		
 		return vbxMainDisplay;
 	}
+
+	public static void AddToCollection() {
+		
+		
+		
+	}
+	
 }
+
+

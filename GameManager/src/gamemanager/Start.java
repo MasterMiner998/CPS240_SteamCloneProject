@@ -37,6 +37,7 @@ public class Start {
 		
 		GameManager.setAccount(account);
 		Application.launch(GameManager.class, args);
+		
 	}
 
 }
