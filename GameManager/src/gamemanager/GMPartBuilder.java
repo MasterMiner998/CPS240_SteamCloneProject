@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class GMPartBuilder {
-	public static Pane gamePageBuilder(Game game) {
+	public static Pane gamePageBuilder(Game game, Account account) {
 		
 		VBox box = new VBox();
 
@@ -41,11 +41,11 @@ public class GMPartBuilder {
 				GameCollection coll = new GameCollection(collName);
 				
 				
-				for(int i = 0; i < Account.getCollections().size(); i++) {
+				for(int i = 0; i < account.getCollections().size(); i++) {
 					
-					if(Account.getCollections().get(i).getName().equals(collName)) {
+					if(account.getCollections().get(i).getName().equals(collName)) {
 						found = true;
-						Account.getCollections().get(i).addGame(game);
+						account.getCollections().get(i).addGame(game);
 						break;
 					}
 				}
@@ -53,19 +53,19 @@ public class GMPartBuilder {
 				if(!found) {
 					
 					coll.addGame(game);
-					Account.getCollections().add(coll);
+					account.getCollections().add(coll);
 					
 				}
 							
 			}
 			
-			for(int i = 0; i < Account.getCollections().size(); i ++) {
+			for(int i = 0; i < account.getCollections().size(); i ++) {
 				//System.out.println(i);
-				System.out.println(Account.getCollections().get(i).name);
+				System.out.println(account.getCollections().get(i).name);
 				
-				for(int j = 0; j < Account.getCollections().get(i).getSize(); j++) {
+				for(int j = 0; j < account.getCollections().get(i).getSize(); j++) {
 					
-					System.out.print("Game " + j + ": " + Account.getCollections().get(i).getCollection().get(j).getName());
+					System.out.print("Game " + j + ": " + account.getCollections().get(i).getCollection().get(j).getName());
 					System.out.println();
 					
 				}

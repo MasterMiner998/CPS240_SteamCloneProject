@@ -150,13 +150,15 @@ public class GameManager extends Application{
 			
 			gameImg.setOnMouseClicked(event -> {
 				
-				bPane.setCenter(GMPartBuilder.gamePageBuilder(g));
+				bPane.setCenter(GMPartBuilder.gamePageBuilder(g, account));
 				
 			});
 			
 			gameView.getChildren().add(gameImg);
 		
 		}
+		
+		
 	}
 	
 }
