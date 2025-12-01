@@ -2,7 +2,6 @@ package gamemanager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
