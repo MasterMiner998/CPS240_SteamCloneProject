@@ -20,9 +20,9 @@ import javafx.stage.Stage;
 
 public class GameManager extends Application{
 	
-	private static final String STEAM_MAIN_COLOR = "#445059";
-	private static final String STEAM_TOP_COLOR = "#232937";
-	private static final String STEAM_LEFT_COLOR = "#364047";
+	public static final String STEAM_MAIN_COLOR = "#445059";
+	public static final String STEAM_TOP_COLOR = "#232937";
+	public static final String STEAM_LEFT_COLOR = "#364047";
 	
 	private static Account account;
 	
@@ -64,6 +64,8 @@ public class GameManager extends Application{
 		bPane.setCenter(centerPane);
 		bPane.setTop(topPane);
 		bPane.setLeft(leftPane);
+		
+		bPane.setCenter(GMPartBuilder.gamePageBuilder(account.getLibrary().getCollection().get(0)));
 		
 		Scene scene = new Scene(bPane, 1000, 800);
 		stage.setTitle("Game Manager");
