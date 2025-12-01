@@ -1,6 +1,6 @@
 package gamemanager;
 
-import java.awt.Image;
+import javafx.scene.image.*;
 
 public class Game implements Comparable<Game> {
 	public static SortType sortType = SortType.Alphabetical;
@@ -20,7 +20,7 @@ public class Game implements Comparable<Game> {
 	private Double playTime;
 	private String releaseDate;
 	
-	private int gameID;
+	private int gameID = -1;
 	
 	private Image cover;
 	
@@ -124,7 +124,7 @@ public class Game implements Comparable<Game> {
 
 	@Override
 	public int compareTo(Game game) {
-		return this.name.compareTo(game.getName());
+		return this.name.compareTo(game.getName().toLowerCase());
 	}
 
 	@Override

@@ -1,11 +1,8 @@
 package gamemanager;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import javafx.scene.image.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -74,13 +71,11 @@ public class ReadData {
 		int count = 0;
 		
 		for(String key: gamesInfo.keySet()) {
-			
-			System.out.println(count += 1);
-			
+						
 			String[] gameData = gamesInfo.get(key); 
 			
 			String gameName = gameData[0];
-			int gameID = gameData[1].equals("NA") ? 0 : Integer.parseInt(gameData[1]) ;
+			int gameID = gameData[1].equals("NA") ? -1 : Integer.parseInt(gameData[1]) ;
 			String[] genres = gameData[2].split(",");
 			String developer = gameData[3];
 			String publisher = gameData[4];
@@ -88,7 +83,7 @@ public class ReadData {
 			String releaseDate = gameData[6];
 			Double rating = gameData[7].equals("NA") || gameData[7].isEmpty() ? 0.0 : Double.parseDouble(gameData[7]);
 						
-			BufferedImage cover = null;
+			Image cover = null;
 			
 			Game game = new Game(gameName, developer, publisher, genres, rating, hours, releaseDate, gameID, cover);
 			allGames.put(gameName, game);
@@ -98,20 +93,6 @@ public class ReadData {
 		
 		
 		return allGames;
-		
-	}
-	
-	public static void main(String[] args) {
-		
-		Map<String, Game> allGames = new HashMap<>();
-		allGames = createGamesMap();
-		
-		for(String key: allGames.keySet()) {
-			
-			System.out.println(allGames.get(key).toString());
-			
-			
-		}
 		
 	}
 
