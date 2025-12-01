@@ -35,44 +35,50 @@ public class GameManager extends Application{
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
-		VBox centerPane = new VBox();
-		FlowPane gameView = new FlowPane();
-		ScrollPane centerScroll = new ScrollPane();
-		
+		VBox centerContainer = new VBox();
 		VBox topPane = new VBox();
-		ScrollPane leftPane = new ScrollPane();
 		VBox gamePane = new VBox(5);
+		
+		FlowPane gameView = new FlowPane();
+		
+		ScrollPane centerPane = new ScrollPane();
+		ScrollPane leftPane = new ScrollPane();
+		
 		BorderPane bPane = new BorderPane();
 		
-		centerScroll.setContent(centerPane);
-		leftPane.setContent(gamePane);
-		leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		
-		centerPane.setStyle(String.format("-fx-background-color: %s", STEAM_MAIN_COLOR));
-		topPane.setStyle(String.format("-fx-background-color: %s", STEAM_TOP_COLOR));
-		leftPane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
-		gamePane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
-		topPane.setMinHeight(100);
-		leftPane.setMinWidth(160);
-		leftPane.setMaxWidth(160);
-		gamePane.setPrefWidth(145);
-		gamePane.setPadding(new Insets(5,0,5,10));
-		
-//		leftPane.setFitToHeight(false);
-//		leftPane.setFitToWidth(true);
-//		
-//		gamePane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-		
-		centerScroll.setFitToWidth(true);
-		gameView.setPrefWidth(Region.USE_COMPUTED_SIZE);
-		
 		Label accountLabel = new Label("Account: " + account.getUserName());
-		topPane.getChildren().add(accountLabel);
 		accountLabel.setAlignment(Pos.CENTER_LEFT);
 		accountLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
 		
+		Label libraryLabel = new Label("Library");
+		libraryLabel.setStyle("-fx-text-fill: white; -fx-font-size: 45;");
+		
+		centerContainer.setStyle(String.format("-fx-background-color: %s", STEAM_MAIN_COLOR));
+		topPane.setStyle(String.format("-fx-background-color: %s", STEAM_TOP_COLOR));
+		leftPane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
+		gamePane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
+		
+		topPane.setMinHeight(100);
+		
+		leftPane.setContent(gamePane);
+		leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		leftPane.setMinWidth(160);
+		leftPane.setMaxWidth(160);
+		
+		gameView.setPrefWidth(Region.USE_COMPUTED_SIZE);
 		gameView.setHgap(10);
 		gameView.setVgap(10);
+		
+		gamePane.setPrefWidth(145);
+		gamePane.setPadding(new Insets(5,0,5,10));
+		
+		centerContainer.getChildren().add(libraryLabel);
+		centerContainer.getChildren().add(gameView);
+		
+		centerPane.setContent(centerContainer);
+		centerPane.setFitToWidth(true);
+		
+		topPane.getChildren().add(accountLabel);
 		
 		for(Game g : account.getLibrary().getCollection()) {
 			
@@ -97,9 +103,7 @@ public class GameManager extends Application{
 		
 		}
 		
-		centerPane.getChildren().add(gameView);
-		
-		bPane.setCenter(centerScroll);
+		bPane.setCenter(centerPane);
 		bPane.setTop(topPane);
 		bPane.setLeft(leftPane);
 		
