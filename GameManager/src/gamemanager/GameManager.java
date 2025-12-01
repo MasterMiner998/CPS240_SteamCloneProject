@@ -55,12 +55,16 @@ public class GameManager extends Application{
 		topPane.setMinHeight(100);
 		leftPane.setMinWidth(160);
 		leftPane.setMaxWidth(160);
+		gamePane.setPrefWidth(145);
 		gamePane.setPadding(new Insets(5,0,5,10));
 		
 //		leftPane.setFitToHeight(false);
 //		leftPane.setFitToWidth(true);
 //		
 //		gamePane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+		
+		centerScroll.setFitToWidth(true);
+		gameView.setPrefWidth(Region.USE_COMPUTED_SIZE);
 		
 		Label accountLabel = new Label("Account: " + account.getUserName());
 		topPane.getChildren().add(accountLabel);

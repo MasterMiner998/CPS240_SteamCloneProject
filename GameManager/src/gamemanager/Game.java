@@ -124,7 +124,7 @@ public class Game implements Comparable<Game> {
 
 	@Override
 	public int compareTo(Game game) {
-		return this.name.compareTo(game.getName().toLowerCase());
+		return this.name.toLowerCase().compareTo(game.getName().toLowerCase());
 	}
 
 	@Override
