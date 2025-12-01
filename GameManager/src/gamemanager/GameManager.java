@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -32,9 +33,10 @@ public class GameManager extends Application{
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
-		GridPane centerPane = new GridPane();
+		FlowPane centerPane = new FlowPane();
 		VBox topPane = new VBox();
 		VBox leftPane = new VBox(5);
+		BorderPane bPane = new BorderPane();
 		
 		centerPane.setStyle(String.format("-fx-background-color: %s", STEAM_MAIN_COLOR));
 		topPane.setStyle(String.format("-fx-background-color: %s", STEAM_TOP_COLOR));
@@ -47,9 +49,6 @@ public class GameManager extends Application{
 		topPane.getChildren().add(accountLabel);
 		accountLabel.setAlignment(Pos.CENTER_LEFT);
 		accountLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
-		
-		int gridPaneCol = 0;
-		int gridPaneRow = 0;
 		
 		centerPane.setHgap(10);
 		centerPane.setVgap(10);
@@ -67,23 +66,21 @@ public class GameManager extends Application{
 			gameImg.setFitWidth(200);
 			gameImg.setFitHeight(300);
 			
-			centerPane.add(gameImg, gridPaneCol, gridPaneRow);
+			gameImg.setOnMouseClicked(event -> {
+				
+				bPane.setCenter(GMPartBuilder.gamePageBuilder(g));
+				
+			});
 			
-			gridPaneCol += 1;
-			
-			if(gridPaneCol >= 8) {
-				gridPaneCol = 0;
-				gridPaneRow += 1;
-			}
+			centerPane.getChildren().add(gameImg);
 		
 		}
 		
-		BorderPane bPane = new BorderPane();
 		bPane.setCenter(centerPane);
 		bPane.setTop(topPane);
 		bPane.setLeft(leftPane);
 		
-		bPane.setCenter(GMPartBuilder.gamePageBuilder(account.getLibrary().getCollection().get(0)));
+		//bPane.setCenter(GMPartBuilder.gamePageBuilder(account.getLibrary().getCollection().get(0)));
 		
 		Scene scene = new Scene(bPane, 1000, 800);
 		stage.setTitle("Game Manager");
@@ -102,9 +99,7 @@ public class GameManager extends Application{
 		try {
 		
 			if(game.getGameID() != -1) {
-				
-				System.out.println("Found at " + imageLink);
-				
+								
 				cover = new Image(imageLink);
 				
 			}
