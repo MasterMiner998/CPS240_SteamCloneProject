@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -32,14 +33,21 @@ public class GameManager extends Application{
 	public void start(Stage stage) throws Exception {
 		Pane centerPane = new Pane();
 		VBox topPane = new VBox();
-		VBox leftPane = new VBox(5);
+		ScrollPane leftPane = new ScrollPane();
+		VBox gamePane = new VBox(5);
+		
+		leftPane.setContent(gamePane);
 		
 		centerPane.setStyle(String.format("-fx-background-color: %s", STEAM_MAIN_COLOR));
 		topPane.setStyle(String.format("-fx-background-color: %s", STEAM_TOP_COLOR));
 		leftPane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
+		gamePane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
 		topPane.setMinHeight(100);
 		leftPane.setMinWidth(160);
-		leftPane.setPadding(new Insets(5,0,5,10));
+		leftPane.setMaxWidth(160);
+		gamePane.setPrefWidth(160);
+		gamePane.setPadding(new Insets(5,0,5,10));
+		leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		
 		Label accountLabel = new Label("Account: " + account.getUserName());
 		topPane.getChildren().add(accountLabel);
@@ -48,7 +56,7 @@ public class GameManager extends Application{
 		
 		for(Game g : account.getLibrary().getCollection()) {
 			Label l;
-			leftPane.getChildren().add(l = new Label(g.getName()));
+			gamePane.getChildren().add(l = new Label(g.getName()));
 			l.setStyle("-fx-text-fill: white; -fx-font-size: 15;");
 		}
 		
