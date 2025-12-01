@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -88,7 +89,13 @@ public class GameManager extends Application{
 		centerPane.setContent(centerContainer);
 		centerPane.setFitToWidth(true);
 		
+		Button libraryButton = new Button("Library");
+		libraryButton.setOnAction(e -> {
+			bPane.setCenter(centerPane);
+		});
+		
 		topPane.getChildren().add(accountLabel);
+		topPane.getChildren().add(libraryButton);
 		
 		refreshLibrary();
 		
