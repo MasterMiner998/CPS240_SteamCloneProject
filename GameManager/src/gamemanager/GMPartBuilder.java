@@ -4,17 +4,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class GMPartBuilder {
 	public static Pane gamePageBuilder(Game game) {
-		Pane p = new Pane();
-		p.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
 		
 		VBox box = new VBox();
-		p.getChildren().add(box);
+
+		
+		VBox vbxAddColl = new VBox();
+		Button btnAddColl = new Button("ADD");
+		Label lblAddColl = new Label("Add to collection: ");
+		TextField tfAddColl = new TextField();
+		
+		tfAddColl.setPrefWidth(270);
+		tfAddColl.setMinWidth(270);
+		tfAddColl.setMaxWidth(270);
+		
+		lblAddColl.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
+		vbxAddColl.setPadding(new Insets(10));
+		
+		vbxAddColl.getChildren().addAll(lblAddColl, tfAddColl, btnAddColl);
+		
+		VBox vbxMainDisplay = new VBox();
+		vbxMainDisplay.setPadding(new Insets(10));
+		vbxMainDisplay.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
+				
+		vbxMainDisplay.getChildren().addAll(box, vbxAddColl);
 		
 		box.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
 		try {
@@ -66,6 +87,6 @@ public class GMPartBuilder {
 		} catch(NullPointerException e) {}
 		
 		
-		return p;
+		return vbxMainDisplay;
 	}
 }
