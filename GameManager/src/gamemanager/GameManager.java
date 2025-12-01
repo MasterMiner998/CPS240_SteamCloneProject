@@ -17,6 +17,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -51,6 +52,12 @@ public class GameManager extends Application{
 		leftPane.setMinWidth(160);
 		leftPane.setMaxWidth(160);
 		gamePane.setPadding(new Insets(5,0,5,10));
+		leftPane.setPrefHeight(800);
+		
+//		leftPane.setFitToHeight(false);
+//		leftPane.setFitToWidth(true);
+//		
+//		gamePane.setPrefHeight(Region.USE_COMPUTED_SIZE);
 		
 		Label accountLabel = new Label("Account: " + account.getUserName());
 		topPane.getChildren().add(accountLabel);
