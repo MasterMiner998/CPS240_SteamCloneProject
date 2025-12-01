@@ -5,6 +5,7 @@ package gamemanager;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -158,6 +159,79 @@ public class GameManager extends Application{
 		
 		}
 		
+		boolean fpFound = false;
+		int fpIndex;
+		
+		Label collName = null;
+		FlowPane collPane = null;
+		
+		for(GameCollection c: account.getCollections()) {
+			
+			fpFound = false;
+			
+			for(Node n: centerContainer.getChildren()) {
+			
+				if(n instanceof Label) {
+					
+					collName = (Label) n;
+					
+					
+					if(collName.getText().equals(c.name)) {
+					
+						fpFound = true;
+						fpIndex = centerContainer.getChildren().indexOf(collName) + 1;
+						
+						collPane = (FlowPane) centerContainer.getChildren().get(fpIndex);
+						
+						for(Game g: c.getCollection()) {
+							
+							ImageView gameImg = new ImageView(g.getCover());
+							
+							gameImg.setFitWidth(200);
+							gameImg.setFitHeight(300);
+							
+							gameImg.setOnMouseClicked(event -> {
+								
+								bPane.setCenter(GMPartBuilder.gamePageBuilder(g, account));
+								
+							});
+							
+							centerContainer.getChildren().addAll(collName, collPane);
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+			if(!fpFound) {
+				
+				collName = new Label(c.getName());
+				
+				for(Game g: c.getCollection()) {
+					
+					ImageView gameImg = new ImageView(g.getCover());
+					
+					gameImg.setFitWidth(200);
+					gameImg.setFitHeight(300);
+					
+					gameImg.setOnMouseClicked(event -> {
+						
+						bPane.setCenter(GMPartBuilder.gamePageBuilder(g, account));
+						
+					});
+					
+					collPane.getChildren().add(gameImg);
+				
+			}
+				
+			centerContainer.getChildren().addAll(collName, collPane);
+			
+		}
+
+		}
 		
 	}
 	

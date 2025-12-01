@@ -72,7 +72,7 @@ public class GMPartBuilder {
 			
 				System.out.println("------------------------------------");
 			}
-						
+			
 		});
 		
 		VBox vbxMainDisplay = new VBox();
