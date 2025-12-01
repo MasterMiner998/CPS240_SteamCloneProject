@@ -30,23 +30,33 @@ public class GameManager extends Application{
 	
 	private static Account account;
 	
+	VBox centerContainer;
+	BorderPane bPane;
+	FlowPane gameView;
+	VBox gameLeftPane;
+	
 	public static void setAccount(Account a) {
 		account = a;
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
-		VBox centerContainer = new VBox();
+		centerContainer = new VBox();
 		VBox topPane = new VBox();
-		VBox gamePane = new VBox(5);
+		gameLeftPane = new VBox(5);
 		
-		FlowPane gameView = new FlowPane();
+		gameView = new FlowPane();
 		
 		ScrollPane centerPane = new ScrollPane();
 		ScrollPane leftPane = new ScrollPane();
 		
-		BorderPane bPane = new BorderPane();
+		bPane = new BorderPane();
 		
-		Label accountLabel = new Label("Account: " + account.getUserName());
+		Label accountLabel;
+		if(account != null) {
+			accountLabel = new Label("Account: " + account.getUserName());
+		} else {
+			accountLabel = new Label("Account: No Account");
+		}
 		accountLabel.setAlignment(Pos.CENTER_LEFT);
 		accountLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
 		
@@ -56,11 +66,11 @@ public class GameManager extends Application{
 		centerContainer.setStyle(String.format("-fx-background-color: %s", STEAM_MAIN_COLOR));
 		topPane.setStyle(String.format("-fx-background-color: %s", STEAM_TOP_COLOR));
 		leftPane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
-		gamePane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
+		gameLeftPane.setStyle(String.format("-fx-background-color: %s", STEAM_LEFT_COLOR));
 		
 		topPane.setMinHeight(100);
 		
-		leftPane.setContent(gamePane);
+		leftPane.setContent(gameLeftPane);
 		leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		leftPane.setMinWidth(160);
 		leftPane.setMaxWidth(160);
@@ -69,8 +79,8 @@ public class GameManager extends Application{
 		gameView.setHgap(10);
 		gameView.setVgap(10);
 		
-		gamePane.setPrefWidth(145);
-		gamePane.setPadding(new Insets(5,0,5,10));
+		gameLeftPane.setPrefWidth(145);
+		gameLeftPane.setPadding(new Insets(5,0,5,10));
 		
 		centerContainer.getChildren().add(libraryLabel);
 		centerContainer.getChildren().add(gameView);
@@ -80,28 +90,7 @@ public class GameManager extends Application{
 		
 		topPane.getChildren().add(accountLabel);
 		
-		for(Game g : account.getLibrary().getCollection()) {
-			
-			parseCoverImage(g);
-			
-			Label l;
-			gamePane.getChildren().add(l = new Label(g.getName()));
-			l.setStyle("-fx-text-fill: white; -fx-font-size: 15;");
-			
-			ImageView gameImg = new ImageView(g.getCover());
-			
-			gameImg.setFitWidth(200);
-			gameImg.setFitHeight(300);
-			
-			gameImg.setOnMouseClicked(event -> {
-				
-				bPane.setCenter(GMPartBuilder.gamePageBuilder(g));
-				
-			});
-			
-			gameView.getChildren().add(gameImg);
-		
-		}
+		refreshLibrary();
 		
 		bPane.setCenter(centerPane);
 		bPane.setTop(topPane);
@@ -137,6 +126,30 @@ public class GameManager extends Application{
 		
 		game.setCover(cover);
 		
+	}
+	public void refreshLibrary() {
+		for(Game g : account.getLibrary().getCollection()) {
+			
+			parseCoverImage(g);
+			
+			Label l;
+			gameLeftPane.getChildren().add(l = new Label(g.getName()));
+			l.setStyle("-fx-text-fill: white; -fx-font-size: 15;");
+			
+			ImageView gameImg = new ImageView(g.getCover());
+			
+			gameImg.setFitWidth(200);
+			gameImg.setFitHeight(300);
+			
+			gameImg.setOnMouseClicked(event -> {
+				
+				bPane.setCenter(GMPartBuilder.gamePageBuilder(g));
+				
+			});
+			
+			gameView.getChildren().add(gameImg);
+		
+		}
 	}
 	
 }
