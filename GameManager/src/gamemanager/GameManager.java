@@ -35,12 +35,16 @@ public class GameManager extends Application{
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
-		FlowPane centerPane = new FlowPane();
+		VBox centerPane = new VBox();
+		FlowPane gameView = new FlowPane();
+		ScrollPane centerScroll = new ScrollPane();
+		
 		VBox topPane = new VBox();
 		ScrollPane leftPane = new ScrollPane();
 		VBox gamePane = new VBox(5);
 		BorderPane bPane = new BorderPane();
 		
+		centerScroll.setContent(centerPane);
 		leftPane.setContent(gamePane);
 		leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		
@@ -52,7 +56,6 @@ public class GameManager extends Application{
 		leftPane.setMinWidth(160);
 		leftPane.setMaxWidth(160);
 		gamePane.setPadding(new Insets(5,0,5,10));
-		leftPane.setPrefHeight(800);
 		
 //		leftPane.setFitToHeight(false);
 //		leftPane.setFitToWidth(true);
@@ -64,8 +67,8 @@ public class GameManager extends Application{
 		accountLabel.setAlignment(Pos.CENTER_LEFT);
 		accountLabel.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
 		
-		centerPane.setHgap(10);
-		centerPane.setVgap(10);
+		gameView.setHgap(10);
+		gameView.setVgap(10);
 		
 		for(Game g : account.getLibrary().getCollection()) {
 			
@@ -86,11 +89,13 @@ public class GameManager extends Application{
 				
 			});
 			
-			centerPane.getChildren().add(gameImg);
+			gameView.getChildren().add(gameImg);
 		
 		}
 		
-		bPane.setCenter(centerPane);
+		centerPane.getChildren().add(gameView);
+		
+		bPane.setCenter(centerScroll);
 		bPane.setTop(topPane);
 		bPane.setLeft(leftPane);
 		
