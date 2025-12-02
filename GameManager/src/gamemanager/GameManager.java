@@ -14,7 +14,8 @@
 	import javafx.scene.image.ImageView;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.layout.FlowPane;
-	import javafx.scene.layout.Region;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 	import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,14 +44,13 @@ import javafx.stage.Stage;
 			return account;
 		}
 		@Override
-		public void start(Stage stage) throws Exception {
-			
+		public void start(Stage stage) throws Exception {			
 			for(Game g: account.getLibrary().getCollection()) {
 				parseCoverImage(g);
 			}
 			
 			centerContainer = new VBox();
-			VBox topPane = new VBox();
+			Pane topPane = new Pane();
 			gameLeftPane = new VBox(5);
 			
 			gameView = new FlowPane();
@@ -115,10 +115,19 @@ import javafx.stage.Stage;
 			});
 			addGameButton.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_MAIN_COLOR));
 			
-			topPane.getChildren().add(accountLabel);
-			topPane.getChildren().add(libraryButton);
-			topPane.getChildren().add(addGameButton);
 			
+			topPane.getChildren().add(accountLabel);
+			accountLabel.setLayoutY(20);
+			accountLabel.setLayoutX(10);
+			topPane.getChildren().add(libraryButton);
+			libraryButton.setLayoutY(50);
+			libraryButton.setLayoutX(10);
+			topPane.getChildren().add(addGameButton);
+			addGameButton.layoutXProperty().bind(
+				    topPane.widthProperty().subtract(addGameButton.widthProperty()).subtract(10)
+			);
+			addGameButton.setLayoutY(30);
+				    
 			refreshLibrary();
 			
 			bPane.setCenter(centerPane);

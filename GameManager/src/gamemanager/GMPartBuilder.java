@@ -144,13 +144,13 @@ public class GMPartBuilder {
 		} catch(NullPointerException e) {}
 		
 		try {
-			Label rating = new Label("Rating: " + game.getRating().toString());
+			Label rating = new Label("Rating: " + game.getRating());
 			rating.setStyle("-fx-text-fill: white;");
 			box.getChildren().add(rating);
 		} catch(NullPointerException e) {}
 		
 		try {
-			Label playTime = new Label("Play time: " + game.getPlayTime().toString());
+			Label playTime = new Label("Play time: " + game.getPlayTime());
 			playTime.setStyle("-fx-text-fill: white;");
 			box.getChildren().add(playTime);
 		}catch(NullPointerException e) {}
