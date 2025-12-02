@@ -147,7 +147,6 @@ import javafx.stage.Stage;
 			String steamImageLink = "https://cdn2.steamgriddb.com/thumb/c5174327c1975f78b7ffc788ed60b80e.jpg";
 			String imageLink = String.format("https://steamcdn-a.akamaihd.net/steam/apps/%d/library_600x900_2x.jpg", game.getGameID());
 			
-			
 			Image cover = new Image(steamImageLink);
 			
 			try {
@@ -156,6 +155,10 @@ import javafx.stage.Stage;
 									
 					cover = new Image(imageLink);
 					
+				}
+				
+				if(cover.isError()) {
+					cover = new Image(steamImageLink);
 				}
 			
 			} catch(Exception e) {

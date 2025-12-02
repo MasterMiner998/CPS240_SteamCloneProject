@@ -11,7 +11,8 @@ public class Start {
 		
 		Map<String, Game> allGames = ReadData.createGamesMap();
 		String[] gamesToAdd = {"Grand Theft Auto V", "ELDEN RING", "Vampire Survivors", "The Witness", "Plants vs. Zombies: Game of the Year", 
-								"Cuphead", "resident evil 4 (2005)"};
+								"Cuphead", "resident evil 4 (2005)", "Mortal Kombat X", "Outlast", "Resident Evil Revelations", "Resident Evil 7 Biohazard",
+								"Call of Duty: Black Ops III", "Sid Meier's Civilization VI", };
 		
 		Game g1 = new Game("Hollow Knight", "Team Cherry", "Team Cherry");
 		Game g2 = new Game("Stardew Valley", "ConcernedApe", "ConcernedApe");
@@ -31,9 +32,16 @@ public class Start {
 		account.addToLibrary(g1);
 		account.addToLibrary(g2);
 		account.addToLibrary(g3);
-//		for(int i=0;i<20;i++) {
-//			account.addToLibrary(new Game("Test", "Test", "Test"));
-//		}
+
+		for(String k: allGames.keySet()) {
+			
+			Game g = allGames.get(k);
+			
+			if(g.getPlayTime() > 20 && !account.getLibrary().getCollection().contains(g)) {
+				account.addToLibrary(g);
+			}
+			
+		}
 		
 		GameManager.setAccount(account);
 		Application.launch(GameManager.class, args);
