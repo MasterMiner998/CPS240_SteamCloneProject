@@ -72,6 +72,7 @@
 			leftPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 			leftPane.setMinWidth(160);
 			leftPane.setMaxWidth(160);
+			leftPane.setFitToHeight(true);
 			
 			gameView.setPrefWidth(Region.USE_COMPUTED_SIZE);
 			gameView.setHgap(10);
@@ -85,6 +86,7 @@
 			
 			centerPane.setContent(centerContainer);
 			centerPane.setFitToWidth(true);
+			centerPane.setFitToHeight(true);
 			
 			Button libraryButton = new Button("Library");
 			libraryButton.setOnAction(e -> {
