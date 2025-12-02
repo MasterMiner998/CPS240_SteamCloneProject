@@ -161,6 +161,12 @@ public class GMPartBuilder {
 			box.getChildren().add(release);
 		} catch(NullPointerException e) {}
 		
+		Button removeBtn = new Button("Remove from Library");
+		removeBtn.setOnAction(e -> {
+			account.removeFromLibrary(game);
+			GameManager.returnToLibrary();
+		});
+		box.getChildren().add(removeBtn);
 		
 		return vbxMainDisplay;
 	}

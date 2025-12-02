@@ -53,9 +53,9 @@ public class GameAddWindow extends Stage{
 		pubBox.setPrefSize(375, 25);
 		pubBox.setMinSize(15, 15);
 		
-		nameBox.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
-		devBox.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
-		pubBox.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
+		nameBox.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white;", GameManager.STEAM_MAIN_COLOR));
+		devBox.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white;", GameManager.STEAM_MAIN_COLOR));
+		pubBox.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white;", GameManager.STEAM_MAIN_COLOR));
 		
 		Button fileButton = new Button("Open File");
 		fileButton.setOnAction(e -> {

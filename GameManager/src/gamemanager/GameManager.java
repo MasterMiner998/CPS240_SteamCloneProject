@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 		static FlowPane gameView;
 		static VBox gameLeftPane;
 		static GameAddWindow gameAddWindow;
+		static ScrollPane centerPane;
 		
 		public static void setAccount(Account a) {
 			account = a;
@@ -54,7 +55,7 @@ import javafx.stage.Stage;
 			
 			gameView = new FlowPane();
 			
-			ScrollPane centerPane = new ScrollPane();
+			centerPane = new ScrollPane();
 			ScrollPane leftPane = new ScrollPane();
 			
 			bPane = new BorderPane();
@@ -274,6 +275,10 @@ import javafx.stage.Stage;
 	
 			}
 			
+		}
+		public static void returnToLibrary() {
+			refreshLibrary();
+			bPane.setCenter(centerPane);
 		}
 		
 	}
