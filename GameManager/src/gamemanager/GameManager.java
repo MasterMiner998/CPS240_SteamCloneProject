@@ -154,6 +154,11 @@
 				Label l;
 				gameLeftPane.getChildren().add(l = new Label(g.getName()));
 				l.setStyle("-fx-text-fill: white; -fx-font-size: 15;");
+				l.setOnMouseClicked(event -> {
+					
+					bPane.setCenter(GMPartBuilder.gamePageBuilder(g, account));
+					
+				});
 				
 				ImageView gameImg = new ImageView(g.getCover());
 				
