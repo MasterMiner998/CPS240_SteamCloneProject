@@ -16,7 +16,8 @@
 	import javafx.scene.layout.FlowPane;
 	import javafx.scene.layout.Region;
 	import javafx.scene.layout.VBox;
-	import javafx.stage.Stage;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 	
 	public class GameManager extends Application{
 		
@@ -32,6 +33,7 @@
 		BorderPane bPane;
 		FlowPane gameView;
 		VBox gameLeftPane;
+		GameAddWindow gameAddWindow;
 		
 		public static void setAccount(Account a) {
 			account = a;
@@ -53,6 +55,9 @@
 			ScrollPane leftPane = new ScrollPane();
 			
 			bPane = new BorderPane();
+			
+			gameAddWindow = new GameAddWindow();
+			gameAddWindow.initModality(Modality.APPLICATION_MODAL);
 			
 			Label accountLabel;
 			if(account != null) {
@@ -99,9 +104,14 @@
 				refreshLibrary();
 				bPane.setCenter(centerPane);
 			});
+			Button addGameButton = new Button("Add Game");
+			addGameButton.setOnAction(e -> {
+				gameAddWindow.show();
+			});
 			
 			topPane.getChildren().add(accountLabel);
 			topPane.getChildren().add(libraryButton);
+			topPane.getChildren().add(addGameButton);
 			
 			refreshLibrary();
 			
