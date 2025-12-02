@@ -29,14 +29,17 @@ import javafx.stage.Stage;
 		
 		private static Account account;
 		
-		VBox centerContainer;
-		BorderPane bPane;
-		FlowPane gameView;
-		VBox gameLeftPane;
-		GameAddWindow gameAddWindow;
+		static VBox centerContainer;
+		static BorderPane bPane;
+		static FlowPane gameView;
+		static VBox gameLeftPane;
+		static GameAddWindow gameAddWindow;
 		
 		public static void setAccount(Account a) {
 			account = a;
+		}
+		public static Account getAccount() {
+			return account;
 		}
 		@Override
 		public void start(Stage stage) throws Exception {
@@ -104,10 +107,12 @@ import javafx.stage.Stage;
 				refreshLibrary();
 				bPane.setCenter(centerPane);
 			});
+			libraryButton.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_MAIN_COLOR));
 			Button addGameButton = new Button("Add Game");
 			addGameButton.setOnAction(e -> {
 				gameAddWindow.show();
 			});
+			addGameButton.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_MAIN_COLOR));
 			
 			topPane.getChildren().add(accountLabel);
 			topPane.getChildren().add(libraryButton);
@@ -150,7 +155,7 @@ import javafx.stage.Stage;
 			game.setCover(cover);
 			
 		}
-		public void refreshLibrary() {
+		public static void refreshLibrary() {
 			
 			if(!initialRun) {
 				gameLeftPane.getChildren().clear();

@@ -47,6 +47,13 @@ public class Game implements Comparable<Game> {
 		this.developer = developer;
 		this.publisher = publisher;
 	}
+	public Game(String name, String developer, String publisher, Image cover) {
+		super();
+		this.name = name;
+		this.developer = developer;
+		this.publisher = publisher;
+		this.cover = cover;
+	}
 
 
 	public String getName() {
