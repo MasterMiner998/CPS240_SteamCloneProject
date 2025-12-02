@@ -1,10 +1,10 @@
 Coding:
 +Add Games
 +Remove Games
-+Add to collection(from game screen)
-+Add collections to library screen
-+Refresh library screen on update
-+Add way to return to library screen from game screen
++Add to collection(from game screen) -> (good)
++Add collections to library screen -> (good)
++Refresh library screen on update -> (goodish)
++Add way to return to library screen from game screen -> (good)
 
 Presentation:
 +Powerpoint
