@@ -43,6 +43,11 @@ public class GMPartBuilder {
 		
 		vbxRemColl.getChildren().addAll(lblRemColl, tfRemColl, btnRemColl);
 		
+		btnAddColl.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_LEFT_COLOR));
+		btnRemColl.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_LEFT_COLOR));
+		tfAddColl.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white;", GameManager.STEAM_LEFT_COLOR));
+		tfRemColl.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white;", GameManager.STEAM_LEFT_COLOR));
+		
 		btnAddColl.setOnMouseClicked(e -> {
 			
 			String collName = tfAddColl.getText();
@@ -162,6 +167,7 @@ public class GMPartBuilder {
 		} catch(NullPointerException e) {}
 		
 		Button removeBtn = new Button("Remove from Library");
+		removeBtn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #b2b2b2", GameManager.STEAM_LEFT_COLOR));
 		removeBtn.setOnAction(e -> {
 			account.removeFromLibrary(game);
 			GameManager.returnToLibrary();

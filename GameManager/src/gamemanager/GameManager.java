@@ -102,6 +102,7 @@ import javafx.stage.Stage;
 			centerPane.setFitToWidth(true);
 			centerPane.setFitToHeight(true);
 			centerPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+			centerContainer.setPadding(new Insets(10,10,10,10));
 			
 			Button libraryButton = new Button("Library");
 			libraryButton.setOnAction(e -> {
