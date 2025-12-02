@@ -229,7 +229,7 @@ public class GameManager extends Application{
 				
 			centerContainer.getChildren().addAll(collName, collPane);
 			
-		}
+			}
 
 		}
 		

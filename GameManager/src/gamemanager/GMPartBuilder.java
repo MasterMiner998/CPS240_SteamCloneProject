@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class GMPartBuilder {
 	public static Pane gamePageBuilder(Game game, Account account) {
@@ -45,7 +44,11 @@ public class GMPartBuilder {
 					
 					if(account.getCollections().get(i).getName().equals(collName)) {
 						found = true;
-						account.getCollections().get(i).addGame(game);
+						
+						if(account.getCollections().get(i).containsGame(game) != 0) {
+							account.getCollections().get(i).addGame(game);
+						}
+						
 						break;
 					}
 				}
