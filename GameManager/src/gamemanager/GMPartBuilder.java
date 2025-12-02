@@ -29,6 +29,20 @@ public class GMPartBuilder {
 		
 		vbxAddColl.getChildren().addAll(lblAddColl, tfAddColl, btnAddColl);
 		
+		VBox vbxRemColl = new VBox();
+		Button btnRemColl = new Button("REMOVE");
+		Label lblRemColl = new Label("Remove from collection: ");
+		TextField tfRemColl = new TextField();
+		
+		tfRemColl.setPrefWidth(270);
+		tfRemColl.setMinWidth(270);
+		tfRemColl.setMaxWidth(270);
+		
+		lblRemColl.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
+		vbxRemColl.setPadding(new Insets(10));
+		
+		vbxRemColl.getChildren().addAll(lblRemColl, tfRemColl, btnRemColl);
+		
 		btnAddColl.setOnMouseClicked(e -> {
 			
 			String collName = tfAddColl.getText();
@@ -61,6 +75,8 @@ public class GMPartBuilder {
 				}
 							
 			}
+			
+			
 			
 			for(int i = 0; i < account.getCollections().size(); i ++) {
 				//System.out.println(i);
