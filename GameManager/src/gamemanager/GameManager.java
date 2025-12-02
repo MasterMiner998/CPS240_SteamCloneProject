@@ -38,6 +38,11 @@
 		}
 		@Override
 		public void start(Stage stage) throws Exception {
+			
+			for(Game g: account.getLibrary().getCollection()) {
+				parseCoverImage(g);
+			}
+			
 			centerContainer = new VBox();
 			VBox topPane = new VBox();
 			gameLeftPane = new VBox(5);
@@ -144,9 +149,7 @@
 			initialRun = false;
 			
 			for(Game g : account.getLibrary().getCollection()) {
-				
-				parseCoverImage(g);
-				
+								
 				Label l;
 				gameLeftPane.getChildren().add(l = new Label(g.getName()));
 				l.setStyle("-fx-text-fill: white; -fx-font-size: 15;");
