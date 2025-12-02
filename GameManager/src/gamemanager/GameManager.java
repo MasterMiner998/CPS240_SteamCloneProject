@@ -92,6 +92,7 @@
 			centerPane.setContent(centerContainer);
 			centerPane.setFitToWidth(true);
 			centerPane.setFitToHeight(true);
+			centerPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 			
 			Button libraryButton = new Button("Library");
 			libraryButton.setOnAction(e -> {
@@ -110,7 +111,7 @@
 			
 			//bPane.setCenter(GMPartBuilder.gamePageBuilder(account.getLibrary().getCollection().get(0)));
 			
-			Scene scene = new Scene(bPane, 1000, 800);
+			Scene scene = new Scene(bPane, 1100, 800);
 			stage.setTitle("Game Manager");
 			stage.setScene(scene);
 			stage.show();
