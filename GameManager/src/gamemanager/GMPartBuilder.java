@@ -76,20 +76,32 @@ public class GMPartBuilder {
 							
 			}
 			
+		});
+		
+		btnRemColl.setOnMouseClicked(e -> {
 			
+			String collName = tfRemColl.getText();
+			tfRemColl.setText("");
 			
-			for(int i = 0; i < account.getCollections().size(); i ++) {
-				//System.out.println(i);
-				System.out.println(account.getCollections().get(i).name);
+			if(!collName.isBlank()) {
 				
-				for(int j = 0; j < account.getCollections().get(i).getSize(); j++) {
+				boolean found = false;
+				GameCollection coll = new GameCollection(collName);
+				
+				
+				for(int i = 0; i < account.getCollections().size(); i++) {
 					
-					System.out.print("Game " + j + ": " + account.getCollections().get(i).getCollection().get(j).getName());
-					System.out.println();
-					
+					if(account.getCollections().get(i).getName().equals(collName)) {
+						found = true;
+						
+						if(account.getCollections().get(i).containsGame(game) == 0) {
+							account.getCollections().get(i).removeGame(game);
+						}
+						
+						break;
+					}
 				}
-			
-				System.out.println("------------------------------------");
+							
 			}
 			
 		});
@@ -98,7 +110,7 @@ public class GMPartBuilder {
 		vbxMainDisplay.setPadding(new Insets(10));
 		vbxMainDisplay.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
 				
-		vbxMainDisplay.getChildren().addAll(box, vbxAddColl);
+		vbxMainDisplay.getChildren().addAll(box, vbxAddColl, vbxRemColl);
 		
 		box.setStyle(String.format("-fx-background-color: %s", GameManager.STEAM_MAIN_COLOR));
 		try {
@@ -151,12 +163,6 @@ public class GMPartBuilder {
 		
 		
 		return vbxMainDisplay;
-	}
-
-	public static void AddToCollection() {
-		
-		
-		
 	}
 	
 }
