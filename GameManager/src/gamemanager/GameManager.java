@@ -12,16 +12,10 @@
 	import javafx.scene.control.ScrollPane;
 	import javafx.scene.image.Image;
 	import javafx.scene.image.ImageView;
-	import javafx.scene.layout.Background;
-	import javafx.scene.layout.BackgroundFill;
 	import javafx.scene.layout.BorderPane;
 	import javafx.scene.layout.FlowPane;
-	import javafx.scene.layout.GridPane;
-	import javafx.scene.layout.HBox;
-	import javafx.scene.layout.Pane;
 	import javafx.scene.layout.Region;
 	import javafx.scene.layout.VBox;
-	import javafx.scene.paint.Color;
 	import javafx.stage.Stage;
 	
 	public class GameManager extends Application{
@@ -30,7 +24,7 @@
 		public static final String STEAM_TOP_COLOR = "#232937";
 		public static final String STEAM_LEFT_COLOR = "#364047";
 		
-		public static int cnt = 0;
+		public static boolean initialRun = true;
 		
 		private static Account account;
 		
@@ -140,12 +134,12 @@
 		}
 		public void refreshLibrary() {
 			
-			if(cnt > 0) {
+			if(!initialRun) {
 				gameLeftPane.getChildren().clear();
 				gameView.getChildren().clear();
 			}
 			
-			cnt += 1;
+			initialRun = false;
 			
 			for(Game g : account.getLibrary().getCollection()) {
 				
