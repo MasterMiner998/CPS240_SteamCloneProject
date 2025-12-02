@@ -8,7 +8,7 @@ public class Account {
 	private String userName;
 	private GameCollection library;
 	private ArrayList<GameCollection> collections;
-	int idCount;
+	private int idCount;
 	public Account(String userName) {
 		this.userName = userName;
 		this.library = new GameCollection(0, "Library");

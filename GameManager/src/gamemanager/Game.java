@@ -16,8 +16,8 @@ public class Game implements Comparable<Game> {
 	private String publisher;
 	private String[] genres;
 	
-	private Double rating;
-	private Double playTime;
+	private double rating;
+	private double playTime;
 	private String releaseDate;
 	
 	private int gameID = -1;
@@ -26,7 +26,7 @@ public class Game implements Comparable<Game> {
 	
 	
 	
-	public Game(String name, String developer, String publisher, String[] genres, Double rating, Double playTime,
+	public Game(String name, String developer, String publisher, String[] genres, double rating, double playTime,
 			String releaseDate, int gameID, Image cover) {
 		super();
 		this.name = name;
@@ -88,19 +88,19 @@ public class Game implements Comparable<Game> {
 		this.genres = genres;
 	}
 
-	public Double getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(Double rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 
-	public Double getPlayTime() {
+	public double getPlayTime() {
 		return playTime;
 	}
 
-	public void setPlayTime(Double playTime) {
+	public void setPlayTime(double playTime) {
 		this.playTime = playTime;
 	}
 
